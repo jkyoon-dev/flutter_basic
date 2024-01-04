@@ -18,6 +18,10 @@ void main() {
           title: Text('this is AppBar'),
         ),
         body: TestWidget(),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.bug_report),
+          onPressed: () => print('Tab FAB!'),
+        ),
       ),
     ),
   );
