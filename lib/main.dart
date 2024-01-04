@@ -57,6 +57,7 @@ class _ExampleStatefulState extends State<ExampleStateful> {
   }
 
   @override
+  // 채팅같은 서비스에서 성능 이슈 해결을 위해 필수적, 쉽지 않은 상태관리라 별도 오픈소스로 제공한다. 지금은 사용X
   void dispose() {
     super.dispose();
     textController.dispose();
