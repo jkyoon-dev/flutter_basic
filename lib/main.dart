@@ -5,33 +5,53 @@ void main() {
     MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: Icon(Icons.home),
-              onPressed: () {
-                print('tab');
-              },
-            ),
-            Icon(Icons.play_arrow),
-          ],
-          centerTitle: true,
-          title: Text('this is AppBar'),
+          title: Text('Study to Container'),
         ),
-        body: TestWidget(),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.bug_report),
-          onPressed: () => print('Tab FAB!'),
-        ),
+        body: CustomContainer(),
       ),
     ),
   );
 }
 
-class TestWidget extends StatelessWidget {
-  const TestWidget({super.key});
+class CustomContainer extends StatelessWidget {
+  const CustomContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Text('Hello Flutter');
+    return Container(
+      color: Colors.orange,
+      child: Center(
+        child: Container(
+          width: double.infinity,
+          height: 100,
+          // color: Color.fromARGB(255, 41, 192, 195),
+          padding: EdgeInsets.fromLTRB(10, 20, 30, 40),
+          margin: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+
+          /// BoxDecoration 선언했을경우 파라미터 안에 컬러로 이동
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 41, 192, 195),
+            border: Border.all(
+                color: Colors.red, width: 5, style: BorderStyle.solid),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.4),
+                offset: Offset(6, 12),
+                blurRadius: 10,
+                spreadRadius: 10,
+              ),
+              BoxShadow(
+                color: Colors.black.withOpacity(0.4),
+                offset: Offset(-6, -12),
+                blurRadius: 10,
+                spreadRadius: 10,
+              ),
+            ],
+          ),
+          child: Text('Hello Container'),
+        ),
+      ),
+    );
   }
 }
