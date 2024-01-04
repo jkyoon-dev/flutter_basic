@@ -16,18 +16,12 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: double.infinity,
       width: double.infinity,
-      color: Colors.grey,
-
-      /// Column 위아래로 쌓을때
-      child: Column(
-        // 메인사이즈 지정 default max
-        mainAxisSize: MainAxisSize.min,
-        // 메인축
+      height: double.infinity,
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        // 반대축
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
 
         /// children 복수형으로 사용
         children: [
