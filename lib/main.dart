@@ -17,31 +17,41 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: double.infinity,
-      child: Row(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-
-        /// children 복수형으로 사용
         children: [
-          Container(
-            color: Colors.red,
-            width: 100,
-            height: 80,
-            child: Text('Container 1'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+
+            /// children 복수형으로 사용
+            children: [
+              Container(
+                color: Colors.red,
+                width: 100,
+                height: 80,
+                child: Text('Container 1'),
+              ),
+              Container(
+                color: Colors.orange,
+                width: 100,
+                height: 80,
+                child: Text('Container 2'),
+              ),
+              Container(
+                color: Colors.yellow,
+                width: 100,
+                height: 80,
+                child: Text('Container 3'),
+              ),
+            ],
           ),
           Container(
-            color: Colors.orange,
-            width: 100,
-            height: 80,
-            child: Text('Container 2'),
-          ),
-          Container(
-            color: Colors.yellow,
-            width: 100,
-            height: 80,
-            child: Text('Container 3'),
+            color: Colors.green,
+            width: 300,
+            height: 120,
+            child: Text('Container 4'),
           ),
         ],
       ),
