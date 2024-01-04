@@ -2,36 +2,49 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Widget을 겹겹히 쌓아 올리기'),
-        ),
-        body: Body(),
-      ),
+    const MaterialApp(
+      home: HomeWidget(),
     ),
   );
 }
 
-class Body extends StatelessWidget {
-  const Body({super.key});
+class HomeWidget extends StatelessWidget {
+  const HomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // Positioned(
-        //   top: 430,
-        //   left: 30,
-        //   child: Container(width: 500, height: 500, color: Colors.red),
-        // ),
-        Align(
-          alignment: Alignment(0.5, -0.5),
-          child: Container(width: 400, height: 400, color: Colors.orange),
+    return SafeArea(
+      child: Scaffold(
+        body: ConstraintsWidget(),
+      ),
+    );
+  }
+}
+
+class ConstraintsWidget extends StatelessWidget {
+  const ConstraintsWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 500,
+      width: 500,
+      color: Colors.blue,
+      // Align => 많이씀, SingleChildScrollView => overflow
+      child: SingleChildScrollView(
+        child: Container(
+          color: Colors.red,
+          height: 300000,
+          width: 300,
+          child: Container(
+            // 제약조건으로 position relative 느낌
+            constraints: BoxConstraints.tight(
+              Size(200, 200),
+            ),
+            margin: EdgeInsets.all(20),
+          ),
         ),
-        Container(width: 300, height: 300, color: Colors.green),
-        Container(width: 200, height: 200, color: Colors.blue),
-      ],
+      ),
     );
   }
 }
