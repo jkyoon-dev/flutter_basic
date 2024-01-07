@@ -15,100 +15,58 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return TestWidget();
+  }
+}
+
+class TestWidget extends StatefulWidget {
+  const TestWidget({super.key});
+
+  @override
+  State<TestWidget> createState() => _TestWidgetState();
+}
+
+class _TestWidgetState extends State<TestWidget> {
+  int value = 0;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TestCheckBox(),
-        TestRadioButton(),
+        Text(
+          'Count : $value',
+          style: TextStyle(fontSize: 30),
+        ),
+        TestButton(),
       ],
     );
   }
 }
 
-class TestCheckBox extends StatefulWidget {
-  const TestCheckBox({super.key});
+class TestButton extends StatefulWidget {
+  const TestButton({super.key});
 
   @override
-  State<TestCheckBox> createState() => _TestCheckBoxState();
+  State<TestButton> createState() => _TestButtonState();
 }
 
-class _TestCheckBoxState extends State<TestCheckBox> {
-  // 체크박스의 체크 됐는지 안됐는지 알기 위한 벨류값 설정, 왜 리스트로 했냐? 체크박스가 여러개 체크박스마다 함수를 하나하나 만들면 낭비
-  late List<bool> values;
-
-  @override
-  void initState() {
-    super.initState();
-    values = [false, false, false];
-  }
-
+class _TestButtonState extends State<TestButton> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // value는 true인지 false인지, onChanged는 콜백함수로 일괄 처리를 위해 외부 처리
-        // Checkbox(value: values[0], onChanged:(value) => value ?? false,), -> 벨류값이 정해져 있어서 불필요
-        Checkbox(
-          value: values[0],
-          onChanged: (value) => changeValue(0, value: value),
-        ),
-        Checkbox(
-          value: values[1],
-          onChanged: (value) => changeValue(1, value: value),
-        ),
-        Checkbox(
-          value: values[2],
-          onChanged: (value) => changeValue(2, value: value),
-        ),
-      ],
-    );
-  }
-
-  // 콜백함수 공용사용으로 몇번째 버튼이 눌렸는지 인텍스가 파라미터로 들어가야됨, 어떤 값으로 변했는지 알아야 되니까 마찬가지 파라미터 추가
-  void changeValue(int index, {bool? value = false}) {
-    setState(() {
-      // 몇번째 버튼인지 value값을 넣어줌
-      values[index] = value!;
-    });
-  }
-}
-
-class TestRadioButton extends StatefulWidget {
-  const TestRadioButton({super.key});
-
-  @override
-  State<TestRadioButton> createState() => _TestRadioButtonState();
-}
-
-enum TestRadioValue { test1, test2, test3 }
-
-class _TestRadioButtonState extends State<TestRadioButton> {
-  TestRadioValue? selectValue;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Radio(
-          value: TestRadioValue.test1,
-          groupValue: selectValue,
-          onChanged: (value) => setState(
-            () => selectValue = value!,
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      width: double.infinity,
+      child: Center(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+          decoration: BoxDecoration(border: Border.all()),
+          child: Text(
+            'Up Counter',
+            style: TextStyle(fontSize: 24),
           ),
         ),
-        Radio(
-          value: TestRadioValue.test2,
-          groupValue: selectValue,
-          onChanged: (value) => setState(
-            () => selectValue = value!,
-          ),
-        ),
-        Radio(
-          value: TestRadioValue.test3,
-          groupValue: selectValue,
-          onChanged: (value) => setState(
-            () => selectValue = value!,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
